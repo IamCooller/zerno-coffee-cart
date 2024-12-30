@@ -1,0 +1,281 @@
+"use client";
+import React, { useState } from "react";
+import { useForm, FormProvider } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { ContactForm } from "@/services/schema";
+import { sendContactForm } from "@/services/actions";
+import { useToast } from "@/hooks/use-toast";
+import { Button } from "@/components/ui/button";
+import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { CalendarIcon } from "lucide-react";
+import { Calendar } from "@/components/ui/calendar";
+
+import { format } from "date-fns";
+
+const eventTypes = ["Wedding", "Birthday", "Corporate", "Other"];
+
+const FormBlock = () => {
+	const form = useForm<z.infer<typeof ContactForm>>({
+		resolver: zodResolver(ContactForm),
+		defaultValues: {
+			name: undefined,
+			email: undefined,
+			phone: undefined,
+			eventLocation: undefined,
+			eventType: undefined,
+			eventDate: undefined,
+			eventTime: undefined,
+			guestCount: undefined,
+			heardAbout: undefined,
+			message: undefined,
+		},
+	});
+
+	const [loading, setLoading] = useState(false);
+	const { toast } = useToast();
+
+	const onSubmit = async (data: z.infer<typeof ContactForm>) => {
+		setLoading(true);
+		try {
+			const formData = new FormData();
+			Object.entries(data).forEach(([key, value]) => {
+				formData.append(key, value as string);
+			});
+
+			const res = await sendContactForm(formData);
+			if (res.errors) {
+				toast({
+					variant: "destructive",
+					title: "Error",
+					description: res.message,
+				});
+			} else {
+				toast({
+					variant: "success",
+					title: "Success",
+					description: res.message,
+				});
+				form.reset();
+			}
+		} catch (error) {
+			toast({
+				variant: "destructive",
+				title: "Error",
+				description: (error as Error)?.message || "Failed to send message",
+			});
+			console.error("Form submission error:", error);
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	return (
+		<FormProvider {...form}>
+			<form onSubmit={form.handleSubmit(onSubmit)} className="relative w-full space-y-[24px]">
+				{/* Name */}
+				<FormField
+					control={form.control}
+					name="name"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>
+								Name <span className="text-grayscale">(Optional)</span>
+							</FormLabel>
+							<FormControl>
+								<Input {...field} type="text" />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+
+				{/* Email */}
+				<FormField
+					control={form.control}
+					name="email"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Email</FormLabel>
+							<FormControl>
+								<Input {...field} type="email" />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+
+				{/* Phone */}
+				<FormField
+					control={form.control}
+					name="phone"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Phone</FormLabel>
+							<FormControl>
+								<Input {...field} type="text" />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+
+				{/* Event Location */}
+				<FormField
+					control={form.control}
+					name="eventLocation"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Event Location</FormLabel>
+							<FormControl>
+								<Input {...field} type="text" />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+
+				{/* Event Type */}
+				<FormField
+					control={form.control}
+					name="eventType"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Type of the Event</FormLabel>
+
+							<Select>
+								<SelectTrigger {...field} onChange={field.onChange} defaultValue={field.value}>
+									<SelectValue placeholder="Select an Option" />
+								</SelectTrigger>
+								<SelectContent>
+									{eventTypes.map((type) => (
+										<SelectItem key={type} value={type}>
+											{type}
+										</SelectItem>
+									))}
+								</SelectContent>
+							</Select>
+
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+
+				{/* Event Date */}
+				<FormField
+					control={form.control}
+					name="eventDate"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Date of the Event</FormLabel>
+							<FormControl>
+								<Popover>
+									<PopoverTrigger asChild>
+										<FormControl>
+											<button
+												type="button"
+												className={
+													"flex h-10 w-full items-center rounded-md border border-grayscale font-sukar bg-transparent px-3 py-1 text-base  transition-colors ffocus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 "
+												}
+											>
+												{field.value ? format(field.value, "PPP") : <span className="text-grayscale">mm/dd/yyyy</span>}
+												<CalendarIcon className="ml-auto h-[24px] w-[24px] " />
+											</button>
+										</FormControl>
+									</PopoverTrigger>
+									<PopoverContent className="w-auto p-0" align="center">
+										<Calendar
+											mode="single"
+											selected={field.value ? new Date(field.value) : undefined}
+											onSelect={(date) => field.onChange(date?.toISOString())}
+											disabled={(date) => date > new Date() || date < new Date("1900-01-01")}
+											initialFocus
+										/>
+									</PopoverContent>
+								</Popover>
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+
+				{/* Event Time */}
+				<FormField
+					control={form.control}
+					name="eventTime"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Start and End Time of Service</FormLabel>
+							<FormControl>
+								<Input {...field} type="text" />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+
+				{/* Guest Count */}
+				<FormField
+					control={form.control}
+					name="guestCount"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Expected Number of Guests</FormLabel>
+							<FormControl>
+								<Input {...field} type="number" />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+
+				{/* How did you hear about us? */}
+				<FormField
+					control={form.control}
+					name="heardAbout"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>
+								How did you hear about us? <span className="text-grayscale">(Optional)</span>
+							</FormLabel>
+							<FormControl>
+								<Input {...field} type="text" />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+
+				{/* Message */}
+				<FormField
+					control={form.control}
+					name="message"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Message</FormLabel>
+							<FormControl>
+								<Textarea {...field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+
+				<div className="w-full mt-[32px] relative grid grid-cols-2 gap-2">
+					<Button type="submit" disabled={loading} className="w-full border-brown border hover:scale-105" title="Send Message" aria-label="Send Message">
+						Send
+					</Button>
+					<Button type="button" variant={"outline"} disabled={loading} className="w-full hover:scale-105" onClick={() => form.reset()} title="Clear" aria-label="Clear">
+						Clear
+					</Button>
+				</div>
+			</form>
+		</FormProvider>
+	);
+};
+
+export default FormBlock;
