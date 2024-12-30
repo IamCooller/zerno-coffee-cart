@@ -41,7 +41,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${arimo.className} ${sukar.variable}`}>
+			<body className={`${arimo.className} ${sukar.variable} overflow-x-hidden`}>
 				<Header />
 				<main className="min-h-screen">{children}</main>
 				<Footer />

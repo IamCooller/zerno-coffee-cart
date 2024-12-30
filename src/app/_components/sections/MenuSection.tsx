@@ -1,5 +1,15 @@
 import React from "react";
-import MenuTabs from "../ui/MenuTabs";
+
+import dynamic from "next/dynamic";
+import LoadingSpinner from "@/components/ui/svg/LoadingSpinner";
+
+const MenuTabs = dynamic(() => import("../ui/MenuTabs"), {
+	loading: () => (
+		<div className="h-full w-full flex justify-center items-center">
+			<LoadingSpinner />
+		</div>
+	),
+});
 const MenuSection = () => {
 	return (
 		<section className="py-[60px]" id="menu">
