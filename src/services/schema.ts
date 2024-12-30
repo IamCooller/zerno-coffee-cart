@@ -4,7 +4,7 @@ export const ContactForm = z.object({
 	email: z.string().email("Please enter a valid email address"),
 	phone: z.string().min(10, "Phone number must be at least 10 digits"),
 	eventLocation: z.string().min(3, "Please enter a valid location"),
-	eventType: z.enum(["Wedding", "Birthday", "Corporate", "Other"]),
+	eventType: z.enum(["Wedding", "Corporate or Office", "Non-Profit or School", "Conference or Expo", "Church Event", "Retail Event", "Baby or Bridal Shower", "Other (Please Describe Below↓)"]),
 	eventDate: z.string().min(1, "Please enter a valid date"),
 	eventTime: z.string().min(1, "Please enter a valid time"),
 	guestCount: z.string().min(1, "Please enter a valid guest count"),

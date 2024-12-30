@@ -18,7 +18,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { Label } from "@radix-ui/react-label";
 
-const eventTypes = ["Wedding", "Birthday", "Corporate", "Other"];
+const eventTypes = ["Wedding", "Corporate or Office", "Non-Profit or School", "Conference or Expo", "Church Event", "Retail Event", "Baby or Bridal Shower", "Other (Please Describe Below↓)"];
 
 const FormBlock = () => {
 	const form = useForm<z.infer<typeof ContactForm>>({
