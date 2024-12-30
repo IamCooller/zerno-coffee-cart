@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -10,12 +10,13 @@ import { Button } from "@/components/ui/button";
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { CalendarIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 
 import { format } from "date-fns";
+import { Label } from "@radix-ui/react-label";
 
 const eventTypes = ["Wedding", "Birthday", "Corporate", "Other"];
 
@@ -35,10 +36,22 @@ const FormBlock = () => {
 			message: undefined,
 		},
 	});
+	const [startTime, setStartTime] = useState<string | undefined>(undefined);
+	const [endTime, setEndTime] = useState<string | undefined>(undefined);
 
 	const [loading, setLoading] = useState(false);
 	const { toast } = useToast();
+	const handleTimeChange = (type: "start" | "end", value: string) => {
+		if (type === "start") {
+			setStartTime(value);
+		} else {
+			setEndTime(value);
+		}
 
+		// Формируем значение для отображения в инпуте
+		const timeString = startTime && endTime ? `${startTime} - ${endTime}` : "";
+		form.setValue("eventTime", timeString);
+	};
 	const onSubmit = async (data: z.infer<typeof ContactForm>) => {
 		setLoading(true);
 		try {
@@ -147,18 +160,19 @@ const FormBlock = () => {
 						<FormItem>
 							<FormLabel>Type of the Event</FormLabel>
 
-							<Select {...field} onValueChange={field.onChange} defaultValue={field.value}>
-								<SelectTrigger>
-									<SelectValue placeholder="Select an Option" />
-								</SelectTrigger>
-								<SelectContent>
-									{eventTypes.map((type) => (
-										<SelectItem key={type} value={type}>
-											{type}
-										</SelectItem>
-									))}
-								</SelectContent>
-							</Select>
+							<select
+								{...field}
+								value={field.value}
+								onChange={(e) => (e.target.value === "" ? field.onChange(undefined) : field.onChange(e.target.value))}
+								className="w-full h-10 px-3 py-1 text-base bg-transparent border border-grayscale rounded-md focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+							>
+								<option value="">Select an Option</option>
+								{eventTypes.map((type) => (
+									<option key={type} value={type}>
+										{type}
+									</option>
+								))}
+							</select>
 
 							<FormMessage />
 						</FormItem>
@@ -207,12 +221,37 @@ const FormBlock = () => {
 				<FormField
 					control={form.control}
 					name="eventTime"
-					render={({ field }) => (
+					render={() => (
 						<FormItem>
 							<FormLabel>Start and End Time of Service</FormLabel>
 							<FormControl>
-								<Input {...field} type="text" />
+								<div className="grid grid-cols-2 gap-4">
+									{/* Start Time */}
+									<div className="">
+										<Label htmlFor="startTime" className="block text-sm font-medium">
+											Start Time
+										</Label>
+										<Input
+											id="startTime"
+											type="time"
+											value={startTime || ""}
+											onChange={(e) => handleTimeChange("start", e.target.value)}
+											required
+											placeholder="Select Start Time"
+										/>
+									</div>
+
+									{/* End Time */}
+									<div className="relative">
+										<Label htmlFor="endTime" className="block text-sm font-medium">
+											End Time
+										</Label>
+
+										<Input id="endTime" type="time" value={endTime || ""} onChange={(e) => handleTimeChange("end", e.target.value)} required />
+									</div>
+								</div>
 							</FormControl>
+
 							<FormMessage />
 						</FormItem>
 					)}
