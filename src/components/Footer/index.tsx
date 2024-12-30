@@ -44,7 +44,7 @@ const Footer = () => {
 					<p className="flex-1">® 2025, ZERNO Coffee Catering</p>
 					<p>
 						Site by{" "}
-						<Link href="/" target="_blank" className=" underline hover:text-brown transition-colors duration-300 ease-in-out">
+						<Link href="https://offthegridlab.com" target="_blank" className=" underline hover:text-brown transition-colors duration-300 ease-in-out">
 							Offthegrid
 						</Link>
 					</p>

@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 
 const MenuTabs = () => {
 	const tabs = [
@@ -10,44 +9,44 @@ const MenuTabs = () => {
 			id: "drinks",
 			label: "Drinks",
 			content: [
-				{ title: "Espresso", imageSrc: "/drinks/1.png", span: 1 },
-				{ title: "Americano", imageSrc: "/drinks/1.png", span: 1 },
-				{ title: "Cappuccino", imageSrc: "/drinks/1.png", span: 1 },
-				{ title: "Latte (Hot/Iced)", imageSrc: "/drinks/1.png", span: 1 },
+				{ title: "Espresso", span: 1 },
+				{ title: "Americano", span: 1 },
+				{ title: "Cappuccino", span: 1 },
+				{ title: "Latte (Hot/Iced)", span: 1 },
 			],
 		},
 		{
 			id: "milk",
 			label: "Milk",
 			content: [
-				{ title: "Whole", imageSrc: "/drinks/1.png", span: 2 },
-				{ title: "Almond", imageSrc: "/drinks/1.png", span: 1 },
-				{ title: "Oat", imageSrc: "/drinks/1.png", span: 1 },
+				{ title: "Whole", span: 2 },
+				{ title: "Almond", span: 1 },
+				{ title: "Oat", span: 1 },
 			],
 		},
 		{
 			id: "flavors",
 			label: "Flavors",
 			content: [
-				{ title: "Vanilla", imageSrc: "/drinks/1.png", span: 1 },
-				{ title: "Caramel", imageSrc: "/drinks/1.png", span: 1 },
-				{ title: "Hazelnut", imageSrc: "/drinks/1.png", span: 1 },
-				{ title: "Seasonal", imageSrc: "/drinks/1.png", span: 1 },
+				{ title: "Vanilla", span: 1 },
+				{ title: "Caramel", span: 1 },
+				{ title: "Hazelnut", span: 1 },
+				{ title: "Seasonal", span: 1 },
 			],
 		},
 		{
 			id: "tea",
 			label: "Tea",
 			content: [
-				{ title: "Black Loose Leaf", imageSrc: "/drinks/1.png", span: 1 },
-				{ title: "Chai Latte", imageSrc: "/drinks/1.png", span: 2 },
-				{ title: "Green Loose Leaf", imageSrc: "/drinks/1.png", span: 1 },
+				{ title: "Black Loose Leaf", span: 1 },
+				{ title: "Chai Latte", span: 2 },
+				{ title: "Green Loose Leaf", span: 1 },
 			],
 		},
 		{
 			id: "decaf",
 			label: "Decaf",
-			content: [{ title: "Hot Chocolate", imageSrc: "/drinks/1.png", span: 4 }],
+			content: [{ title: "Hot Chocolate", span: 4 }],
 		},
 	];
 
@@ -116,9 +115,6 @@ const MenuTabs = () => {
 											}}
 										>
 											<h3 className="font-sukar font-bold text-[24px] mb-[24px] text-center">{item.title}</h3>
-											<div className="w-full relative h-[248px]">
-												<Image src={item.imageSrc} alt={item.title} fill className="rounded-[8px] object-cover" quality={100} />
-											</div>
 										</motion.div>
 									))}
 								</motion.div>
