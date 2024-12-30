@@ -13,6 +13,7 @@ const BookingSection = () => {
 							Contact us to book our services and enjoy a luxurious coffee catering experience. Whether it’s a wedding, corporate event, or private party, we’ll serve the finest coffee
 							to make your event unforgettable.
 						</p>
+						<p>We offer custom branding on our cart and cups for an additional fee. Please include a note below if you`d like to personalize your booking!</p>
 					</SlideFromLeftComponent>
 					<SlideFromRightComponent>
 						<FormBlock />

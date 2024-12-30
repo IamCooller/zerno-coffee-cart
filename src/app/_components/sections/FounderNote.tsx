@@ -21,7 +21,7 @@ const FounderNote = () => {
 							</p>
 						</div>
 					</SlideFromLeftComponent>
-					<SlideFromRightComponent className=" h-full w-full max-md:aspect-square rounded-[24px] overflow-hidden relative">
+					<SlideFromRightComponent className="max-md:-order-1 h-full w-full max-md:aspect-square rounded-[24px] overflow-hidden relative">
 						<Image src="/person.png" alt="coffee" fill className=" object-cover" quality={100} />
 					</SlideFromRightComponent>
 				</div>
