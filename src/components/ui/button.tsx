@@ -3,6 +3,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 const buttonVariants = cva(
 	"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0  transition-all duration-300 ease-in-out active:scale-90",
@@ -32,11 +33,16 @@ const buttonVariants = cva(
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
 	asChild?: boolean;
+	href?: string; // Для работы с Link
+	target?: string; // Для внешних ссылок
+	linkProps?: Omit<React.ComponentProps<typeof Link>, "href" | "children">; // Остальные props для Link
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ className, variant, size, asChild = false, ...props }, ref) => {
-	const Comp = asChild ? Slot : "button";
-	return <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props} />;
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ className, variant, size, asChild = false, href, target, linkProps, ...props }, ref) => {
+	const Comp: React.ElementType = asChild ? Slot : href ? Link : "button";
+	const componentProps = href ? { href, target, ...linkProps } : {};
+
+	return <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...componentProps} {...props} />;
 });
 Button.displayName = "Button";
 

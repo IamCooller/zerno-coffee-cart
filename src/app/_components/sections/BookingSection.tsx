@@ -4,7 +4,7 @@ import { SlideFromLeftComponent, SlideFromRightComponent } from "@/components/An
 
 const BookingSection = () => {
 	return (
-		<section className="py-[60px]">
+		<section className="py-[60px]" id="booking">
 			<div className="container">
 				<div className="grid md:grid-cols-2 gap-[60px] md:gap-4">
 					<SlideFromLeftComponent className="">

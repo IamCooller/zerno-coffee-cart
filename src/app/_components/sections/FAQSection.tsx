@@ -22,7 +22,7 @@ const FAQSection = () => {
 		},
 	];
 	return (
-		<section className="py-[60px]">
+		<section className="py-[60px]" id="faq">
 			<div className="container">
 				<div className="text-center mb-[60px]">
 					{" "}

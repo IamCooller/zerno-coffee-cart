@@ -23,7 +23,7 @@ const EventSection = () => {
 		},
 	];
 	return (
-		<section className="py-[60px] ">
+		<section className="py-[60px] " id="services">
 			<div className="container ">
 				<h2 className=" font-sukar font-bold text-[32px] text-center w-full mb-[60px] text-brown">Mobile Coffee Cart and Espresso Bar Catering</h2>
 				<AnimatedGrid className="flex justify-center md:justify-between flex-wrap gap-[24px]">

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { SlideFromLeftComponent, SlideFromRightComponent } from "@/components/Animations";
 const FounderNote = () => {
 	return (
-		<section className="py-[60px]">
+		<section className="py-[60px]" id="about">
 			<div className="container">
 				<div className="grid md:grid-cols-2 gap-[54px]">
 					<SlideFromLeftComponent className="">
