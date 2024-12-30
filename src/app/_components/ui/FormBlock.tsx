@@ -206,7 +206,7 @@ const FormBlock = () => {
 											mode="single"
 											selected={field.value ? new Date(field.value) : undefined}
 											onSelect={(date) => field.onChange(date?.toISOString())}
-											disabled={(date) => date > new Date() || date < new Date("1900-01-01")}
+											disabled={(date) => date <= new Date()}
 											initialFocus
 										/>
 									</PopoverContent>

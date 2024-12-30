@@ -38,9 +38,9 @@ const MenuTabs = () => {
 			id: "tea",
 			label: "Tea",
 			content: [
-				{ title: "Black Loose Leaf", span: 1 },
-				{ title: "Chai Latte", span: 2 },
-				{ title: "Green Loose Leaf", span: 1 },
+				{ title: "Chai", span: 2 },
+				{ title: "Black", span: 1 },
+				{ title: "Green", span: 1 },
 			],
 		},
 		{
