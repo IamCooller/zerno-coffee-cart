@@ -147,8 +147,8 @@ const FormBlock = () => {
 						<FormItem>
 							<FormLabel>Type of the Event</FormLabel>
 
-							<Select>
-								<SelectTrigger {...field} onChange={field.onChange} defaultValue={field.value}>
+							<Select {...field} onValueChange={field.onChange} defaultValue={field.value}>
+								<SelectTrigger>
 									<SelectValue placeholder="Select an Option" />
 								</SelectTrigger>
 								<SelectContent>
