@@ -1,5 +1,6 @@
 import { FadeInComponent } from "@/components/Animations";
 import { Button } from "@/components/ui/button";
+import { _mail } from "@/lib/constants";
 import React from "react";
 
 const CallToAction = () => {
@@ -13,7 +14,7 @@ const CallToAction = () => {
 						<Button href="#booking" className="w-[200px] border border-brown" title="Book Cart" aria-label="Book Cart">
 							Book Cart
 						</Button>
-						<Button className="w-[200px] hover:scale-110" variant={"outline"} title="Contact Us" aria-label="Contact Us">
+						<Button className="w-[200px] hover:scale-110" variant={"outline"} title="Contact Us" href={`mailto:${_mail}`} aria-label="Contact Us">
 							Contact Us
 						</Button>
 					</div>

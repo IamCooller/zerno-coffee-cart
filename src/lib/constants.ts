@@ -4,7 +4,7 @@ import MailIcon from "@/components/ui/svg/MailIcon";
 
 export const _siteUrl = process.env.NEXT_PUBLIC_URL_BASE || "http://localhost:3000";
 
-export const _mail = "";
+export const _mail = "hello@zernocoffee.com";
 export const _phone = "";
 
 export const _googleLink = "";
