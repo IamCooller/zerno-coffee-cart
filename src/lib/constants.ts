@@ -8,8 +8,8 @@ export const _mail = "hello@zernocoffee.com";
 export const _phone = "";
 
 export const _googleLink = "";
-export const _facebook = "";
-export const _instagram = "";
+export const _facebook = "https://www.facebook.com/share/18pJ3jk5N3/?mibextid=wwXIfr";
+export const _instagram = "https://www.instagram.com/zerno_coffeecart?igsh=dnNjOXh0d25lZ3V4";
 
 export const _linkedin = "";
 
