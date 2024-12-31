@@ -6,6 +6,7 @@ import { arimo, sukar } from "@/styles/fonts/fonts";
 import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SnowClient from "./SnowClient";
 
 const title = "Zerno Coffee Cart";
 const description = "Zerno Coffee Cart is a coffee shop located in Philadelphia, PA. We offer a variety of coffee, tea, and pastries. Come visit us today!";
@@ -44,6 +45,7 @@ export default function RootLayout({
 			<body className={`${arimo.className} ${sukar.variable} overflow-x-hidden`}>
 				<Header />
 				<main className="min-h-screen">{children}</main>
+				<SnowClient />
 				<Footer />
 				<Toaster />
 			</body>
