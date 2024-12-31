@@ -97,7 +97,7 @@ const MenuTabs = () => {
 					{tabs.map(
 						(tab) =>
 							activeTab === tab.id && (
-								<motion.div key={tab.id} variants={containerVariants} transition={{ duration: 0.4 }} className="max-md:flex flex-col md:grid grid-cols-4 gap-[24px]">
+								<motion.div key={tab.id} variants={containerVariants} transition={{ duration: 0.4 }} className="flex max-md:flex-col  justify-center items-center gap-[24px]">
 									{tab.content.map((item, index) => (
 										<motion.div
 											key={index}
@@ -109,9 +109,6 @@ const MenuTabs = () => {
 											transition={{
 												duration: 0.3,
 												delay: index * 0.1,
-											}}
-											style={{
-												gridColumn: `span ${item.span} / span ${item.span}`,
 											}}
 										>
 											<h3 className="font-sukar font-bold text-[24px] mb-[24px] text-center">{item.title}</h3>

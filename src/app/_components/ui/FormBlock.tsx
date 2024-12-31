@@ -96,9 +96,7 @@ const FormBlock = () => {
 					name="name"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>
-								Name <span className="text-grayscale">(Optional)</span>
-							</FormLabel>
+							<FormLabel>Name</FormLabel>
 							<FormControl>
 								<Input {...field} type="text" />
 							</FormControl>
@@ -278,9 +276,7 @@ const FormBlock = () => {
 					name="heardAbout"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>
-								How did you hear about us? <span className="text-grayscale">(Optional)</span>
-							</FormLabel>
+							<FormLabel>How did you hear about us?</FormLabel>
 							<FormControl>
 								<Input {...field} type="text" />
 							</FormControl>

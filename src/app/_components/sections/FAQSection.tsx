@@ -9,7 +9,7 @@ const FAQSection = () => {
 		},
 		{
 			trigger: "What power & space requirements do you have? ",
-			content: "We need a 6' by 5' space for the cart and baristas, and each setup requires one 15-amp circuit ",
+			content: "We need a 6' by 5' space for the cart and baristas, and each setup requires one 15-amp circuit period.",
 		},
 		{
 			trigger: "What customization can you do?",
