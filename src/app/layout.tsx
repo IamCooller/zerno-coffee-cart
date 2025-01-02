@@ -10,8 +10,9 @@ import SnowClient from "./SnowClient";
 
 import Script from "next/script";
 
-const title = "Zerno Coffee Cart";
-const description = "Zerno Coffee Cart is a coffee shop located in Philadelphia, PA. We offer a variety of coffee, tea, and pastries. Come visit us today!";
+const title = "Zerno Coffee Cart | coffee cart catering | Philadelphia, PA, USA";
+const description =
+	"Zerno Coffee Cart is a specialty coffee cart with a full espresso bar based in Philadelphia, Pennsylvania. We offer coffee cart catering for private, corporate, and retail events.";
 
 export const metadata: Metadata = {
 	metadataBase: new URL(_siteUrl.startsWith("http") ? _siteUrl : `https://${_siteUrl}`),
