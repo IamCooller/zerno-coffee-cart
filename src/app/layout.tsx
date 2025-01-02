@@ -10,9 +10,9 @@ import SnowClient from "./SnowClient";
 
 import Script from "next/script";
 
-const title = "Zerno Coffee Cart | coffee cart catering | Philadelphia, PA, USA";
+const title = "Zerno Coffee - Specialty Coffee Cart Catering in Philadelphia, PA";
 const description =
-	"Zerno Coffee Cart is a specialty coffee cart with a full espresso bar based in Philadelphia, Pennsylvania. We offer coffee cart catering for private, corporate, and retail events.";
+	"Elevate your occasion in Philadelphia with Zerno Coffee's specialty coffee cart catering. Enjoy a variety of drinks including Espresso, Americano, Cappuccino, and Hot/Iced Latte for events, festivals, and gatherings.";
 
 export const metadata: Metadata = {
 	metadataBase: new URL(_siteUrl.startsWith("http") ? _siteUrl : `https://${_siteUrl}`),
@@ -35,6 +35,12 @@ export const metadata: Metadata = {
 			{ url: `/logo.svg`, media: "(prefers-color-scheme: light)" },
 			{ url: `/logo-white.svg`, media: "(prefers-color-scheme: dark)" },
 		],
+	},
+
+	other: {
+		keywords: "coffee catering, specialty coffee, event catering, coffee cart rental, Zerno Coffee, coffee for events, Philadelphia, PA, Espresso, Americano, Cappuccino, Latte",
+		author: "Zerno Coffee",
+		title: title,
 	},
 };
 
