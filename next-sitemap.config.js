@@ -1,11 +1,12 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-	siteUrl: process.env.NEXT_PUBLIC_URL_BASE, // URL вашего сайта
-	generateRobotsTxt: true, // Генерация robots.txt
-	sitemapSize: 5000, // Максимальное количество URL в sitemap
-	changefreq: "weekly", // Частота обновления
-	priority: 0.7, // Приоритет страниц
-	exclude: ["/404", "/server-error"], // Исключить эти страницы
+	siteUrl: "https://zernocoffee.com",
+	generateRobotsTxt: true,
+	generateIndexSitemap: false, // Убираем индексный sitemap.xml
+	sitemapSize: 0, // Отключаем разбивку
+	changefreq: "weekly",
+	priority: 0.7,
+	exclude: ["/404", "/server-error"],
 	robotsTxtOptions: {
 		policies: [
 			{
@@ -13,6 +14,5 @@ module.exports = {
 				allow: "/",
 			},
 		],
-		additionalSitemaps: [`${process.env.NEXT_PUBLIC_URL_BASE}/sitemap.xml`],
 	},
 };
