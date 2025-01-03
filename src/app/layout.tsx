@@ -49,9 +49,6 @@ export const metadata: Metadata = {
 		statusBarStyle: "default",
 		capable: true,
 	},
-	alternates: {
-		canonical: _siteUrl,
-	},
 
 	icons: {
 		icon: [
