@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: zernocoffee.com
+
+# Sitemaps
+Sitemap: zernocoffee.com/sitemap.xml
