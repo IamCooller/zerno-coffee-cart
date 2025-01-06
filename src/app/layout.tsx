@@ -1,13 +1,15 @@
 import type { Metadata, Viewport } from "next";
 import "@/styles/globals.scss";
 
-import { _siteUrl } from "@/lib/constants";
+import { _phone, _siteUrl } from "@/lib/constants";
 import { arimo, sukar } from "@/styles/fonts/fonts";
 import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SnowClient from "./SnowClient";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
+import Head from "next/head";
 
 export const viewport: Viewport = {
 	width: "device-width",
@@ -37,10 +39,6 @@ export const metadata: Metadata = {
 	robots: {
 		index: true,
 		follow: true,
-		"max-image-preview": "standard",
-		"max-snippet": -1,
-		"max-video-preview": -1,
-		googleBot: "index, follow",
 	},
 
 	applicationName: "Zerno Coffee Cart",
@@ -64,6 +62,20 @@ export const metadata: Metadata = {
 	},
 };
 
+const structuredData = {
+	"@context": "https://schema.org",
+	"@type": "LocalBusiness",
+	name: "Zerno Coffee",
+	description: description,
+	address: {
+		"@type": "PostalAddress",
+		addressLocality: "Philadelphia",
+		addressRegion: "PA",
+		addressCountry: "US",
+	},
+	telephone: _phone,
+	url: _siteUrl.startsWith("http") ? _siteUrl : `https://${_siteUrl}`,
+};
 export default function RootLayout({
 	children,
 }: Readonly<{
@@ -71,6 +83,11 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
+			<Head>
+				<link rel="canonical" href={_siteUrl.startsWith("http") ? _siteUrl : `https://${_siteUrl}`} />
+			</Head>
+
+			<Script id="structured-data" strategy="beforeInteractive" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
 			<body className={`${arimo.className} ${sukar.variable} overflow-x-hidden`}>
 				<Header />
 				<main className="min-h-screen">{children}</main>
