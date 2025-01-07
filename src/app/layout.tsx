@@ -19,7 +19,7 @@ export const viewport: Viewport = {
 
 const title = "Zerno Coffee - Specialty Coffee Cart Catering in Philadelphia, PA";
 const description =
-	"Elevate your occasion in Philadelphia with Zerno Coffee's specialty coffee cart catering. Enjoy a variety of drinks including Espresso, Americano, Cappuccino, and Hot/Iced Latte for events, festivals, and gatherings.";
+	"Elevate your occasion in Philadelphia with Zerno Coffee's specialty coffee cart catering. Enjoy a variety of drinks including Espresso, Americano, Cappuccino, and Hot/Iced Latte for private, corporate, and retail events.";
 
 export const metadata: Metadata = {
 	metadataBase: new URL(_siteUrl.startsWith("http") ? _siteUrl : `https://${_siteUrl}`),
