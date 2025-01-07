@@ -13,7 +13,7 @@ const HeroSection = () => {
 					Philadelphia, PA
 				</p>
 				<Button href="#booking" title="Book Your Coffee Cart" aria-label="Book Your Coffee Cart" className="mt-[32px] ">
-					Book Your Coffee Cart
+					Book Your Coffee Cart{" "}
 				</Button>
 			</FadeInComponent>
 		</section>
