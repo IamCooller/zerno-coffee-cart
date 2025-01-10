@@ -84,10 +84,12 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<Head>
-				<link rel="canonical" href={_siteUrl.startsWith("http") ? _siteUrl : `https://${_siteUrl}`} />
+				<>
+					<link rel="canonical" href={_siteUrl.startsWith("http") ? _siteUrl : `https://${_siteUrl}`} />
+					<Script id="structured-data" strategy="beforeInteractive" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+				</>
 			</Head>
 
-			<Script id="structured-data" strategy="beforeInteractive" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
 			<body className={`${arimo.className} ${sukar.variable} overflow-x-hidden`}>
 				<Header />
 				<main className="min-h-screen">{children}</main>
