@@ -92,17 +92,7 @@ export default function RootLayout({
 
 			<body className={`${arimo.className} ${sukar.variable} overflow-x-hidden`}>
 				<Header />
-				<main className="min-h-screen">
-					{children}
-					<div className="fixed bottom-0 left-0 right-0 bg-red-500 text-white p-4 text-center z-50 pointer-events-none ">
-						<h1 className="font-bold">Banner Text for Unpaid Projects: </h1>
-						<p>
-							We regret to inform you that despite completing our work to the highest standards, this company has failed to compensate us for our services. <br /> We advise caution when
-							dealing with this company, as we cannot guarantee they will uphold their commitments. <br />
-							For further inquiries, feel free to contact us.
-						</p>
-					</div>
-				</main>
+				<main className="min-h-screen">{children}</main>
 				<SnowClient />
 				<Footer />
 				<Toaster />
